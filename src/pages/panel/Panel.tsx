@@ -55,18 +55,42 @@ const isJsonRPC = content => {
   return json.jsonrpc === '2.0' && (json.method !== undefined || json.error !== undefined || json.result !== undefined);
 };
 
+
+interface Message {
+  request: {
+    method: string;
+    params: unknown;
+    jsonrpc: string;
+    id: string | number;
+  },
+  response: {
+    result: unknown;
+    error: {
+      code: number;
+      message: string;
+      data?: unknown;
+    };
+    jsonrpc: string;
+    id: string | number;
+  },
+  type: string;
+  url: string;
+  startTime: number;
+  responseTime: number;
+}
+
 const Panel: React.FC = () => {
   const [filter, setFilter] = useState('');
   const [recording, setRecording] = useState(true);
   const [startedRecording, setStartedRecording] = useState<number | undefined>();
   const [selected, setSelected] = useState('');
-  const [requests, setRequests] = useState([]); // [{id: string, method: string, params: any, result: any}
+  const [requests, setRequests] = useState<Message[]>([]); // [{id: string, method: string, params: any, result: any}
 
   useEffect(() => {
     if (!recording) {
       return;
     }
-    const handler = async (request: chrome.devtools.network.Request) => {
+    const handler = async (request) => {
       const content = await new Promise(resolve => {
         request.getContent(content => {
           resolve(content);
@@ -104,7 +128,7 @@ const Panel: React.FC = () => {
     }
   }, [recording]);
 
-  const [selectedRequest, setSelectedRequest] = useState<chrome.devtools.network.Request>();
+  const [selectedRequest, setSelectedRequest] = useState<Message>();
 
   useEffect(() => {
     if (requests && requests.length > 0) {
