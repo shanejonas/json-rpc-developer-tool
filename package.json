@@ -31,7 +31,7 @@
     "@devtools-ds/table": "^1.2.1",
     "construct-style-sheets-polyfill": "3.1.0",
     "json-rpc-devtools": "link:",
-    "react": "18.2.0",
+    "react": "18.3.1",
     "react-dom": "18.2.0",
     "webextension-polyfill": "0.10.0"
   },
@@ -43,7 +43,7 @@
     "@testing-library/react": "14.0.0",
     "@types/chrome": "0.0.263",
     "@types/node": "20.8.10",
-    "@types/react": "18.2.37",
+    "@types/react": "18.3.2",
     "@types/react-dom": "18.2.18",
     "@types/ws": "8.5.8",
     "@typescript-eslint/eslint-plugin": "6.10.0",
