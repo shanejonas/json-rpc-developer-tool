@@ -1,12 +1,20 @@
-import exampleThemeStorage from '@src/shared/storages/exampleThemeStorage';
+// import jsonrpcStorage from '@src/shared/storages/jsonrpc';
 import refreshOnUpdate from 'virtual:reload-on-update-in-view';
 
 refreshOnUpdate('pages/content/injected/toggleTheme');
 
-async function toggleTheme() {
-  console.log('initial theme!', await exampleThemeStorage.get());
-  await exampleThemeStorage.toggle();
-  console.log('toggled theme', await exampleThemeStorage.get());
-}
+// async function doProvider() {
+//   window.addEventListener('jsonrpc-request', async (event: any) => {
+//     const { id, method, params } = event.detail;
+//     (jsonrpcStorage as any).addRequest({ id, method, params });
+//     (window as any).ethereum.request({ id, method, params }).then((result) => {
+//       window.dispatchEvent(new CustomEvent('jsonrpc-response', { detail: { id, result } }));
+//     });
+//   });
+// }
+// console.log('im inside toggleTheme');
+// setTimeout(() => {
+//   console.log(window.ethereum)
+// }, 5000)
 
-void toggleTheme();
+// void doProvider();
