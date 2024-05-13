@@ -161,6 +161,7 @@ const Panel: React.FC = () => {
               onClick={() => {
                 setRequests([]);
                 setSelected(undefined);
+                setStartedRecording(new Date().valueOf());
               }}
               icon={<DeleteIcon fill="rgba(0,0,0.8)" size="medium" />}
               aria-label="Delete"
@@ -185,7 +186,6 @@ const Panel: React.FC = () => {
       <Table
         selected={selected}
         onSelected={id => {
-          console.log('id', id);
           setSelected(id);
         }}>
         <Table.Head>
@@ -231,9 +231,9 @@ const Panel: React.FC = () => {
                         position: 'absolute',
                         backgroundColor: 'lightblue',
                         left: requests[i - 1]
-                          ? `${Math.max((requests[i - 1].startTime - startedRecording) / (new Date().valueOf() - startedRecording), 0) * 99}%`
+                          ? `${Math.max((requests[i - 1].startTime - startedRecording) / (new Date().valueOf() - startedRecording), 0) * 95}%`
                           : '0%',
-                        width: `${Math.max(req.responseTime / (new Date().valueOf() - startedRecording), 0.05) * 99}%`,
+                        width: `${Math.max(req.responseTime / (new Date().valueOf() - startedRecording), 0.03) * 95}%`,
                         height: '10px',
                       }}
                     />
@@ -241,36 +241,6 @@ const Panel: React.FC = () => {
                 </Table.Row>
               );
             })}
-          {/* <Table.Row id="one">
-            <Table.Cell>eth_requestAccounts</Table.Cell>
-            <Table.Cell>0.001s</Table.Cell>
-            <Table.Cell>{JSON.stringify({ foo: 'bar' })}</Table.Cell>
-            <Table.Cell>{JSON.stringify({ foo: 'baz' })}</Table.Cell>
-          </Table.Row>
-          <Table.Row id="two">
-            <Table.Cell>eth_call</Table.Cell>
-            <Table.Cell>0.021s</Table.Cell>
-            <Table.Cell>{JSON.stringify({ foo: 'bar' })}</Table.Cell>
-            <Table.Cell>{JSON.stringify({ foo: 'baz' })}</Table.Cell>
-          </Table.Row>
-          <Table.Row id="three">
-            <Table.Cell>eth_chainId</Table.Cell>
-            <Table.Cell>0.031s</Table.Cell>
-            <Table.Cell>{JSON.stringify({ foo: 'bar' })}</Table.Cell>
-            <Table.Cell>{JSON.stringify({ foo: 'baz' })}</Table.Cell>
-          </Table.Row>
-          <Table.Row id="four">
-            <Table.Cell>eth_blockByNumber</Table.Cell>
-            <Table.Cell>0.091s</Table.Cell>
-            <Table.Cell>{JSON.stringify({ foo: 'bar' })}</Table.Cell>
-            <Table.Cell>{JSON.stringify({ foo: 'baz' })}</Table.Cell>
-          </Table.Row>
-          <Table.Row id="five">
-            <Table.Cell>wallet_requestPermissions</Table.Cell>
-            <Table.Cell>0.221s</Table.Cell>
-            <Table.Cell>{JSON.stringify({ foo: 'bar' })}</Table.Cell>
-            <Table.Cell>{JSON.stringify({ foo: 'baz' })}</Table.Cell>
-          </Table.Row> */}
         </Table.Body>
       </Table>
       {selected && (
@@ -278,7 +248,7 @@ const Panel: React.FC = () => {
           className="overlay-panel"
           style={{
             display: selected ? 'block' : 'none',
-            position: 'absolute',
+            position: 'fixed',
             right: 0,
             top: 0,
             left: '50%',
