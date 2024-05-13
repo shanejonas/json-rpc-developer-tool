@@ -30,6 +30,7 @@
     "@devtools-ds/object-inspector": "^1.2.1",
     "@devtools-ds/table": "^1.2.1",
     "construct-style-sheets-polyfill": "3.1.0",
+    "json-rpc-devtools": "link:",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "webextension-polyfill": "0.10.0"
