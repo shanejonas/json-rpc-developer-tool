@@ -12,3 +12,6 @@ Our MVP aims to provide basic functionalities such as live monitoring of JSON-RP
 
 ## Target Audience
 This tool is intended for blockchain developers, smart contract developers, and backend engineers who regularly work with JSON-RPC protocols. It will benefit those in the industry, especially in projects involving Ethereum, or other blockchain technologies that use JSON-RPC and require efficient debugging tools.
+
+## Preview
+![devtools-jsonrpc](https://github.com/shanejonas/json-rpc-developer-tool/assets/364566/a3713132-7f80-4e04-9dd9-4b1c3182b30b)
